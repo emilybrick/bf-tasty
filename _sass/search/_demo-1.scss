@@ -1,0 +1,16 @@
+.tasty-filter {
+  overflow-x: auto;
+
+  .tasty-filter__bar {
+    min-width: 630px;
+  }
+
+  .tasty-filter__cell {
+    min-width: 16%;
+    white-space: nowrap;
+  }
+}
+
+.js-filter-selected {
+  background-color: $fill-gray;
+}

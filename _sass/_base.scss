@@ -1,3 +1,5 @@
+$tasty-blue: #32BBD9;
+
 @import "../node_modules/bf-solid/_lib/solid";
 
 @font-face {
@@ -10,4 +12,8 @@
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
+}
+
+.button--tasty {
+  @include button-style($tasty-blue, $text-white, $tasty-blue, $text-white);
 }

@@ -1,0 +1,154 @@
+/////////////////// BREAKPOINT MIXIN FROM SOLID //////////////////////
+// set to false to make responsive
+// mixin give only xs- versions of
+// responsive classes
+$generate-responsive-classes: true !default;
+
+// all of the breakpoint names and values
+// we may use this a lot, keep them somwhere safe
+$breakpoints: (
+  xs: null,
+  sm: 40rem,
+  md: 52rem,
+  lg: 64rem,
+);
+
+// returns the apropriate media query
+// for the given breakpoint name
+@mixin media-query($breakpoint) {
+  @if (map-get($breakpoints, $breakpoint)) == null {
+    @content;
+  } @else {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+}
+// nest content inside breakpoint prefix classes
+// in the apropriate media query block
+@mixin generate-breakpoint-prefixes {
+  @if ($generate-responsive-classes == true) {
+    // generate prefixed classes
+  @each $breakpoint-name, $breakpoint-value in $breakpoints {
+    $breakpoint-prefix: "#{$breakpoint-name}-";
+
+    @include media-query($breakpoint-name) {
+      // Columns
+      .#{$breakpoint-prefix} {
+        @content;
+      }
+    }
+   }
+  } @else {
+    // only return xs styles
+   .xs- { @content; }
+  }
+}
+// END BREAKPOINT MIXIN
+
+
+// Order Properties - Children
+.flex {
+  display: flex;
+}
+
+.flex-order-1 {
+  order: 1;
+}
+
+.flex-order-2 {
+  order: 2;
+}
+
+
+// Directional Properties - Parent
+.flex-row {
+  flex-direction: row;
+  display: flex;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+  display: flex;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+  display: flex;
+}
+
+// Justify Content - Parent
+
+.justify-content-start {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.justify-content-end {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+  display: flex;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+  display: flex;
+}
+
+
+// Align Items - Parent
+
+.align-items-start {
+  align-items: flex-start;
+  display: flex;
+}
+
+.align-items-end {
+  align-items: flex-end;
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+  display: flex;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+  display: flex;
+}
+
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+// Flex Wrap 
+
+@include generate-breakpoint-prefixes {
+  
+  &flex-wrap {
+    flex-wrap: wrap         !important;
+  }
+  &flex-nowrap {
+    flex-wrap: nowrap       !important;
+  }
+}
