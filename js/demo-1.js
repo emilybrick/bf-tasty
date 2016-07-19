@@ -7,64 +7,42 @@
 var $searchClear = document.querySelector(".js-search-clear");
 var $filterInput = document.querySelector(".js-filter-input");
 var $filters = document.querySelectorAll(".js-filter");
-
-
-// this block adds a class once a filter is selected
-
-var setFilterState = function (value) {
-  $filters.forEach(function ($f) {
-    var filterValue = $f.innerText;
-    var cl = $f.classList;
-    if (value === filterValue) {
-      if (!cl.contains('js-filter-selected')){
-        cl.add("js-filter-selected");
-      }
-    } else {
-      cl.remove("js-filter-selected");
+var _selected_filter;
+// filter clicked, input value changes to filter's name
+$filters.forEach(function ($f){
+  $f.onclick = function(){
+    // makes sure only one filter is selected at a time
+    if(_selected_filter){
+      _selected_filter.classList.remove("js-filter-selected")
     }
-  });
-}
-
-var searchValue = "";
-
-// this block handles changes to the input
-var handleInputChange = function() {
-  searchValue = $filterInput.value;
-  var cl = $searchClear.classList;
-  console.log(searchValue)
-  if (searchValue === "") {
-    if (!cl.contains('xs-hide')){
-      cl.add("xs-hide");
-    }
-  } else {
-    cl.remove("xs-hide");
+    _selected_filter = $f;
+    _selected_filter.classList.add("js-filter-selected")
+    $filterInput.value = $f.innerText;
+    document.getElementById('mock-result-img').src = "images/" + $f.innerText + ".png";
+    $searchClear.classList.remove("xs-hide")
   }
-  setFilterState(searchValue);
-}
-
-$filterInput.addEventListener("change", handleInputChange);
-$filterInput.addEventListener("keyup", handleInputChange);
+})
 
 // this block handles clicks on the clear icon
-
-var handleClearClick = function () {
+$searchClear.onclick = function () {
+  $searchClear.classList.add("xs-hide");
+  if (_selected_filter){
+    _selected_filter.classList.remove("js-filter-selected");
+  }
   $filterInput.value = "";
-  handleInputChange();
+  document.getElementById('mock-result-img').src = "images/all-tasty.png";
 }
 
-$searchClear.addEventListener("click", handleClearClick)
-
-// this block handles filter click input behavior 
-
-$filters.forEach(function ($f) {
-  var filterValue = $f.innerText;
-
-  var handleFilterClick = function () {
-    $filterInput.value = filterValue;
-    handleInputChange();
+// this block handles input changes
+$filterInput.onkeyup = function (){
+  if($filterInput.value === ""){
+    $searchClear.classList.add("xs-hide");
   }
-
-  $f.addEventListener("click", handleFilterClick);
-});
-
-
+  else{
+    if(_selected_filter){
+      _selected_filter.classList.remove("js-filter-selected")
+    }
+    $searchClear.classList.remove("xs-hide");
+  }
+  
+}

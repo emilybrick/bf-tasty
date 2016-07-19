@@ -7,11 +7,11 @@ layout: default
 <div class="wrapper card xs-my4 xs-col-12 sm-col-11 lg-col-7 xs-text-center xs-mx-auto">
 
   <div class="clearfix justify-content-center xs-p3 xs-border-bottom-lighter"> 
-    <form class="col xs-col-9 sm-col-6 xs-mr05">
-      <input type="text" class="js-filter-input text-input xs-col-12" placeholder="What are you in the mood for?">
-      <a class="xs-hide js-search-clear" href="#"><svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><title>Artboard 1</title><g fill="none" fill-rule="evenodd"><ellipse fill="#EAEAEA" cx="11" cy="11" rx="11" ry="11"/><path d="M6.427 8.406c-.57-.57-.57-1.41 0-1.98.568-.568 1.41-.568 1.98 0l2.547 2.55 2.55-2.55c.568-.568 1.512-.568 2.07 0 .568.57.568 1.514 0 2.07l-2.55 2.55 2.55 2.548c.568.57.568 1.41 0 1.98-.57.568-1.41.568-1.98 0l-2.548-2.55-2.55 2.55c-.568.568-1.512.568-2.07 0-.568-.57-.568-1.514 0-2.07l2.55-2.458-2.55-2.64z" fill="#929292"/></g></svg></a>
+    <form class="col xs-col-10 sm-col-8 xs-mr05">
+      <input type="text" class="js-filter-input text-input col xs-col-9 xs-mr1" placeholder="What are you in the mood for?">
+      <a class="xs-hide js-search-clear xs-relative" href="#"><svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><title>Artboard 1</title><g fill="none" fill-rule="evenodd"><ellipse fill="#EAEAEA" cx="11" cy="11" rx="11" ry="11"/><path d="M6.427 8.406c-.57-.57-.57-1.41 0-1.98.568-.568 1.41-.568 1.98 0l2.547 2.55 2.55-2.55c.568-.568 1.512-.568 2.07 0 .568.57.568 1.514 0 2.07l-2.55 2.55 2.55 2.548c.568.57.568 1.41 0 1.98-.57.568-1.41.568-1.98 0l-2.548-2.55-2.55 2.55c-.568.568-1.512.568-2.07 0-.568-.57-.568-1.514 0-2.07l2.55-2.458-2.55-2.64z" fill="#929292"/></g></svg></a>
+      <button class="button button--tasty xs-float-left col xs-col-2">Search</button>
     </form>
-    <button class="button button--tasty xs-float-left">Search</button>
   </div>
 
   <div class="tasty-filter">
@@ -44,6 +44,11 @@ layout: default
   </div>
 
 </div>
+
+<div class="tasty-mock-result">
+  <img id="mock-result-img" src="images/all-tasty.png">
+</div>
+
 
 <script src="{{ '/js/demo-1.js' | prepend: site.baseurl }}"></script>
 
